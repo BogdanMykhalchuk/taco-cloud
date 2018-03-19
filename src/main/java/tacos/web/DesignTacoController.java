@@ -4,7 +4,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import tacos.Design;
 import tacos.Ingredient;
 import tacos.Ingredient.Type;
 import tacos.Taco;
@@ -33,10 +35,10 @@ public class DesignTacoController {
                 new Ingredient("SRCR", "Sour Cream", Type.SAUCE)
         );
 
-        Type[] types = Type.values();
+        Type[] types = Ingredient.Type.values();
         for (Type type : types) {
             model.addAttribute(type.toString().toLowerCase(),
-                    ingredients.stream().filter(t -> type.equals(t.getType())).collect(Collectors.toList()));
+                    ingredients.stream().filter(a -> type.equals(a.getType())).collect(Collectors.toList()));
         }
 
         model.addAttribute("design", new Taco());
@@ -44,4 +46,12 @@ public class DesignTacoController {
         return "design";
     }
 
+    @PostMapping
+    public String processDesign(Design design) {
+        // Save the taco design...
+        // We'll do this in chapter 3
+        log.info("Processing design: " + design);
+
+        return "redirect:/orders/current";
+    }
 }
