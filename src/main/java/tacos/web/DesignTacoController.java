@@ -1,22 +1,17 @@
 package tacos.web;
 
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import tacos.Ingredient;
+import tacos.Ingredient.Type;
+import tacos.Taco;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import javax.validation.Valid;
-
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import lombok.extern.slf4j.Slf4j;
-import tacos.Taco;
-import tacos.Ingredient;
-import tacos.Ingredient.Type;
 
 @Slf4j
 @Controller
@@ -38,10 +33,10 @@ public class DesignTacoController {
                 new Ingredient("SRCR", "Sour Cream", Type.SAUCE)
         );
 
-        Type[] types = Ingredient.Type.values();
+        Type[] types = Type.values();
         for (Type type : types) {
             model.addAttribute(type.toString().toLowerCase(),
-                    filterByType(ingredients, type));
+                    ingredients.stream().filter(t -> type.equals(t.getType())).collect(Collectors.toList()));
         }
 
         model.addAttribute("design", new Taco());
