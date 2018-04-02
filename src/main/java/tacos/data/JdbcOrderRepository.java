@@ -69,4 +69,13 @@ public class JdbcOrderRepository implements OrderRepository {
         orderTacoInserter.execute(values);
     }
 
+    @Override
+    public Iterable<Order> findAll() {
+        return null;
+    }
+
+    @Override
+    public Order findOne(String id) {
+        return null;
+    }
 }
