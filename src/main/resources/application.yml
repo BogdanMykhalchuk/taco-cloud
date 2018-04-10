@@ -1,14 +1,18 @@
 spring:
   datasource:
     url: jdbc:mysql://localhost/tacocloud
-    username: tacodb
-    password: tacopassword
-    schema: schema.sql
-    data: data.sql
+    username: beranked
+    password: beranked
 
 logging:
+  path: /var/logs/
+  file: TacoCloud.log
   level:
     root: WARN
     org:
       springframework:
         security: DEBUG
+
+taco:
+  orders:
+    pageSize: 10
