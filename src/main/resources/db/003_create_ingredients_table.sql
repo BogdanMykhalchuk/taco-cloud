@@ -1,0 +1,5 @@
+CREATE TABLE IF NOT EXISTS ingredients (
+    id BIGINT PRIMARY KEY,
+    name VARCHAR(100),
+    type VARCHAR(100)
+);

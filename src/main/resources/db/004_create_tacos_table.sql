@@ -1,0 +1,5 @@
+CREATE TABLE IF NOT EXISTS tacos (
+    id BIGINT PRIMARY KEY,
+    name VARCHAR(100),
+    created_at TIMESTAMP
+);

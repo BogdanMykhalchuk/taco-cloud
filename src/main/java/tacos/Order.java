@@ -4,10 +4,13 @@ import lombok.Data;
 import org.hibernate.validator.constraints.CreditCardNumber;
 import org.hibernate.validator.constraints.NotBlank;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
@@ -24,7 +27,7 @@ import java.util.List;
  */
 @Data
 @Entity
-@Table(name="Taco_Order")
+@Table(name="orders")
 public class Order implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -32,6 +35,7 @@ public class Order implements Serializable {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
+    @Column(name = "placed_at")
     private Date placedAt;
     @NotBlank(message="Name is required")
     private String name;
@@ -44,14 +48,21 @@ public class Order implements Serializable {
     @NotBlank(message="Zip code is required")
     private String zip;
     @CreditCardNumber(message="Not a valid credit card number")
+    @Column(name = "cc_number")
     private String ccNumber;
     @Pattern(regexp="^(0[1-9]|1[0-2])([\\/])([1-9][0-9])$",
             message="Must be formatted MM/YY")
+    @Column(name = "cc_expiration")
     private String ccExpiration;
     @Digits(integer=3, fraction=0, message="Invalid CVV")
+    @Column(name = "cc_cvv")
     private String ccCVV;
 
     @ManyToMany(targetEntity=Taco.class)
+    @JoinTable(
+            name="orders_tacos",
+            joinColumns=@JoinColumn(name="order_id", referencedColumnName="id"),
+            inverseJoinColumns=@JoinColumn(name="taco_id", referencedColumnName="id"))
     private List<Taco> tacos = new ArrayList<>();
 
     @ManyToOne
