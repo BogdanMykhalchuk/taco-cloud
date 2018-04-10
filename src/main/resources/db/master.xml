@@ -1,0 +1,12 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <include file="001_create_users_table.xml" relativeToChangelogFile="true"/>
+    <include file="002create_orders_table.xml" relativeToChangelogFile="true"/>
+    <include file="003_create_ingredients_table.xml" relativeToChangelogFile="true"/>
+    <include file="004_create_tacos_table.xml" relativeToChangelogFile="true"/>
+    <include file="005_create_orders_tacos_table.xml" relativeToChangelogFile="true"/>
+    <include file="006_insert_into_ingredients_table.xml" relativeToChangelogFile="true"/>
+</databaseChangeLog>

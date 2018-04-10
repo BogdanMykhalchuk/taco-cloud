@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import tacos.Ingredient;
-import tacos.Ingredient.Type;
 import tacos.Order;
 import tacos.Taco;
+import tacos.Type;
 import tacos.data.IngredientRepository;
 import tacos.data.TacoRepository;
 
@@ -45,7 +45,7 @@ public class DesignTacoController {
         List<Ingredient> ingredients = new ArrayList<>();
         ingredientRepo.findAll().forEach(i -> ingredients.add(i));
 
-        Type[] types = Ingredient.Type.values();
+        Type[] types = Type.values();
         for (Type type : types) {
             model.addAttribute(type.toString().toLowerCase(),
                     ingredients.stream().filter(a -> type.equals(a.getType())).collect(Collectors.toList()));
