@@ -1,7 +1,7 @@
 spring:
   datasource:
     url: jdbc:mysql://localhost:3306/taco?serverTimezone=UTC
-    username: beranked
-    password: beranked
+    username: root
+    password: DEMOTOoth2017@
     hikari:
       connection-test-query: 'SELECT 1'

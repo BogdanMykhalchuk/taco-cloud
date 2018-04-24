@@ -1,14 +1,11 @@
 package tacos.data;
 
+import org.springframework.data.jpa.repository.JpaRepository;
 import tacos.Taco;
 
 /**
- * Created by Dreawalker on 21.03.2018.
+ * Created by Dreawalker on 22.04.2018.
  */
-public interface TacoRepository {
-    Iterable<Taco> findAll();
+public interface TacoRepository extends JpaRepository<Taco, Long> {
 
-    Taco findOne(String id);
-
-    Taco save(Taco ingredient);
 }
